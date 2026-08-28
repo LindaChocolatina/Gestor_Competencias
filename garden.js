@@ -275,7 +275,15 @@ const GardenArt = (() => {
     else if (type==="induccion") inner = foxglove(c,28,28);
     else if (type==="practica")  inner = rose(c,28,28);
     else inner = aster(c,28,28);
-    return `<svg viewBox="0 0 56 56" class="flora-mini">${inner}</svg>`;
+    return `<svg viewBox="0 0 56 56" class="flora-mini">
+      <defs>
+        <filter id="rough-mini" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <g filter="url(#rough-mini)">${inner}</g>
+    </svg>`;
   }
 
   function legend() {
@@ -284,7 +292,17 @@ const GardenArt = (() => {
   }
 
   function frame(inner) {
-    return `<svg class="garden-svg" viewBox="0 0 128 108" aria-hidden="true">${inner}</svg>`;
+    return `<svg class="garden-svg" viewBox="0 0 128 108" aria-hidden="true">
+      <defs>
+        <filter id="rough" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <g filter="url(#rough)">
+        ${inner}
+      </g>
+    </svg>`;
   }
 
   return { draw, legend, flowers };
