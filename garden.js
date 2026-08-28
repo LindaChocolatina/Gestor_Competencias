@@ -1,451 +1,286 @@
-// garden.js — Ilustraciones botánicas SVG inspiradas en las imágenes de referencia
+// garden.js — Ilustraciones botánicas con paths bezier
 const GardenArt = (() => {
 
-  // ── Paleta de colores por tipo de competencia ──────────────────────────────
   const flowers = {
-    tecnica: {
-      label: "Técnica",
-      petal: "#E3B84A",      // amarillo girasol
-      petalDeep: "#C4922E",
-      center: "#7A5A1A",
-      heart: "#5C3E0E"
-    },
-    ingles: {
-      label: "Inglés",
-      petal: "#D2C0DC",      // lila suave
-      petalDeep: "#B89BC8",
-      center: "#C45C74",
-      heart: "#9B4A60"
-    },
-    transversal: {
-      label: "Transversales",
-      petal: "#FFFEF6",      // blanco cremoso
-      petalDeep: "#F0E6D0",
-      center: "#E3B84A",
-      heart: "#C4922E"
-    },
-    induccion: {
-      label: "Inducción",
-      petal: "#C45C74",      // rosa-rojo
-      petalDeep: "#A84A60",
-      center: "#E3B84A",
-      heart: "#C4922E"
-    },
-    practica: {
-      label: "Etapa práctica",
-      petal: "#D4EAB0",      // verde-amarillo
-      petalDeep: "#B3C49A",
-      center: "#C45C74",
-      heart: "#A84A60"
-    }
+    tecnica:     { label:"Técnica",        p:"#F2C744", pd:"#C89018", pb:"#8A6010", c:"#5A3A08", h:"#3A2206" },
+    ingles:      { label:"Inglés",         p:"#EDD5F0", pd:"#C4A0D8", pb:"#9870B8", c:"#D46888", h:"#A84060" },
+    transversal: { label:"Transversales",  p:"#FEFDF0", pd:"#E4D8B8", pb:"#C8BC90", c:"#E8C040", h:"#B89020" },
+    induccion:   { label:"Inducción",      p:"#F08098", pd:"#D05070", pb:"#A03050", c:"#F8DC60", h:"#C0A010" },
+    practica:    { label:"Etapa práctica", p:"#C8E4A0", pd:"#98C068", pb:"#6A9040", c:"#E87090", h:"#B84060" }
   };
 
-  // ── Colores generales ─────────────────────────────────────────────────────
-  const STEM   = "#5C7A40";
-  const STEM2  = "#4A6830";
-  const LEAF   = "#5C7A40";
-  const LEAF2  = "#6B8F4A";
-  const LEAF3  = "#8FA374";
-  const SOIL1  = "#7A5A3A";
-  const SOIL2  = "#9A754C";
-  const SOIL3  = "#5C4030";
-  const SOIL4  = "#3E2E20";
-  const SEED_C = "#C4A882";
-  const SEED_D = "#8A6B4A";
-  const WILT   = "#8A7055";
-  const WILT_L = "#6A5A38";
-  const WILT_P = "#A08060";
+  // Constantes de color
+  const L="#4A6828", LM="#5E8035", LT="#82A850";
+  const ST="#4A6828", SL="#70A040";
+  const T1="#7A5A3A", T2="#9A7550", T3="#5A3E28", T4="#3A2818";
+  const SK="#C4A878", SD="#8A6848";
+  const W="#8A7050",  WL="#6A5838", WP="#A08060";
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // ELEMENTOS BASE DEL JARDÍN
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // Montículo de tierra con textura
-  function soilMound() {
+  // ── Tierra ───────────────────────────────────────────────────────────────
+  function soil() {
     return `
-      <!-- sombra del montículo -->
-      <ellipse cx="64" cy="96" rx="48" ry="8" fill="${SOIL4}" opacity=".35"/>
-      <!-- cuerpo del montículo -->
-      <path d="M14 86 C22 68 44 60 64 62 C86 64 106 72 114 86 C100 98 80 104 64 104 C46 104 26 98 14 86Z"
-            fill="${SOIL1}"/>
-      <!-- luz superior del montículo -->
-      <path d="M20 82 C34 70 52 68 64 70 C80 72 98 78 108 86"
-            fill="none" stroke="${SOIL2}" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-      <!-- grietas de la tierra -->
-      <path d="M36 88 Q48 84 58 88" fill="none" stroke="${SOIL3}" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
-      <path d="M72 84 Q82 80 90 85" fill="none" stroke="${SOIL3}" stroke-width="1" stroke-linecap="round" opacity=".4"/>
-      <!-- pequeñas piedras -->
-      <ellipse cx="42" cy="92" rx="3.5" ry="2" fill="${SOIL3}" opacity=".45"/>
-      <ellipse cx="86" cy="90" rx="4" ry="2.2" fill="${SOIL2}" opacity=".4"/>
-      <ellipse cx="64" cy="96" rx="3" ry="1.6" fill="${SOIL3}" opacity=".35"/>
-    `;
+      <ellipse cx="64" cy="97" rx="48" ry="7" fill="${T4}" opacity=".4"/>
+      <path d="M15 86 C24 66 44 58 64 60 C86 62 106 70 113 86 C100 100 82 106 64 106 C44 106 26 100 15 86Z" fill="${T1}"/>
+      <path d="M22 82 C36 70 52 68 64 70 C78 72 96 78 106 86" fill="none" stroke="${T2}" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      <path d="M36 90 C50 84 78 84 92 90" fill="none" stroke="${T3}" stroke-width="1.2" stroke-linecap="round" opacity=".4"/>
+      <path d="M38 86 Q50 82 58 86" fill="none" stroke="${T3}" stroke-width="1" stroke-linecap="round" opacity=".3"/>
+      <ellipse cx="40" cy="93" rx="3" ry="1.8" fill="${T3}" opacity=".45"/>
+      <ellipse cx="90" cy="91" rx="3.5" ry="2" fill="${T2}" opacity=".38"/>`;
   }
 
-  // Semilla enterrada (estado 2)
-  function seedInSoil() {
+  // ── Semilla ──────────────────────────────────────────────────────────────
+  function seedEl() {
     return `
-      <!-- semilla ovalada con brillo -->
-      <ellipse cx="64" cy="82" rx="9" ry="6" fill="${SEED_C}" transform="rotate(-15 64 82)"/>
-      <ellipse cx="62" cy="80" rx="3.5" ry="2.2" fill="${SEED_D}" transform="rotate(-15 62 80)" opacity=".65"/>
-      <!-- línea de la semilla -->
-      <path d="M58 83 Q64 79 70 83" fill="none" stroke="${SEED_D}" stroke-width="1" opacity=".5"/>
-    `;
+      <ellipse cx="64" cy="81" rx="10" ry="6.5" fill="${SK}" transform="rotate(-12 64 81)"/>
+      <ellipse cx="62" cy="79" rx="4" ry="2.5" fill="${SD}" transform="rotate(-12 62 79)" opacity=".6"/>
+      <path d="M57 83 Q64 78 71 83" fill="none" stroke="${SD}" stroke-width="1.2" opacity=".4"/>`;
   }
 
-  // Tallo principal
-  function stem(h1, h2, curve = 0) {
-    const cx = 64 + curve;
-    return `<path d="M64 ${h1} C${cx} ${Math.round((h1+h2)/2)} 64 ${Math.round((h1+h2)/2 - 10)} 64 ${h2}"
-                  fill="none" stroke="${STEM}" stroke-width="3" stroke-linecap="round"/>
-            <path d="M65 ${h1} C${cx+1} ${Math.round((h1+h2)/2)} 65 ${Math.round((h1+h2)/2 - 10)} 65 ${h2}"
-                  fill="none" stroke="${STEM2}" stroke-width="1.2" stroke-linecap="round" opacity=".45"/>`;
-  }
-
-  // Hoja botánica realista con nervadura
-  function botanicalLeaf(cx, cy, rx, ry, rot, flip = false) {
-    const sc = flip ? -1 : 1;
+  // ── Tallo ────────────────────────────────────────────────────────────────
+  function stm(y1, y2, ox=0) {
+    const m = Math.round((y1+y2)/2);
     return `
-      <g transform="translate(${cx} ${cy}) rotate(${rot}) scale(${sc} 1)">
-        <!-- cuerpo de la hoja -->
-        <path d="M0 0 C-${rx*0.6} -${ry*0.5} -${rx} -${ry*0.8} -${rx*0.3} -${ry}
-                 C${rx*0.3} -${ry} ${rx} -${ry*0.6} ${rx*0.5} 0
-                 C${rx*0.3} ${ry*0.3} -${rx*0.3} ${ry*0.2} 0 0Z"
-              fill="${LEAF}" />
-        <!-- variación de tono -->
-        <path d="M0 0 C-${rx*0.3} -${ry*0.4} -${rx*0.5} -${ry*0.7} -${rx*0.1} -${ry}
-                 C${rx*0.2} -${ry} ${rx*0.5} -${ry*0.5} ${rx*0.2} 0Z"
-              fill="${LEAF2}" opacity=".5"/>
-        <!-- nervadura central -->
-        <path d="M0 0 L-${rx*0.2} -${ry*0.9}" fill="none" stroke="${LEAF3}" stroke-width="0.8" opacity=".7"/>
-        <!-- nervaduras laterales -->
-        <path d="M-${rx*0.05} -${ry*0.3} L-${rx*0.6} -${ry*0.55}" fill="none" stroke="${LEAF3}" stroke-width="0.5" opacity=".5"/>
-        <path d="M-${rx*0.1} -${ry*0.55} L-${rx*0.7} -${ry*0.75}" fill="none" stroke="${LEAF3}" stroke-width="0.5" opacity=".5"/>
-      </g>
-    `;
+      <path d="M64 ${y1} C${64+ox} ${m} 64 ${m-10} 64 ${y2}" fill="none" stroke="${ST}" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M65.5 ${y1} C${65+ox} ${m} 65 ${m-10} 65 ${y2}" fill="none" stroke="${SL}" stroke-width="1" stroke-linecap="round" opacity=".45"/>`;
   }
 
-  // Brotes pequeños al salir de la tierra
-  function sproutLeaves() {
+  // ── Hojas botánicas ──────────────────────────────────────────────────────
+  function leafPair(wilt=false) {
+    if (wilt) return `
+      <path d="M62 72 C46 64 34 70 38 80 C46 74 60 73 62 72Z" fill="${WL}"/>
+      <path d="M62 72 L40 76" fill="none" stroke="${W}" stroke-width=".8" opacity=".5"/>
+      <path d="M66 70 C82 62 96 66 92 76 C84 70 68 69 66 70Z" fill="${WL}" opacity=".8"/>
+      <path d="M66 70 L90 73" fill="none" stroke="${W}" stroke-width=".8" opacity=".5"/>`;
     return `
-      ${botanicalLeaf(56, 54, 8, 14, -35)}
-      ${botanicalLeaf(72, 54, 8, 14, 35, true)}
-    `;
+      <!-- hoja izquierda -->
+      <path d="M62 66 C50 58 34 58 34 70 C42 68 58 67 62 66Z" fill="${L}"/>
+      <path d="M62 66 C52 62 40 62 38 68Z" fill="${LM}" opacity=".5"/>
+      <path d="M62 66 L36 68" fill="none" stroke="${LT}" stroke-width=".9" opacity=".55"/>
+      <path d="M54 63 L38 61" fill="none" stroke="${LT}" stroke-width=".5" opacity=".4"/>
+      <!-- hoja derecha -->
+      <path d="M66 63 C78 55 94 55 94 67 C86 65 70 64 66 63Z" fill="${LM}"/>
+      <path d="M66 63 C76 59 88 59 90 65Z" fill="${LT}" opacity=".45"/>
+      <path d="M66 63 L92 65" fill="none" stroke="${LT}" stroke-width=".9" opacity=".55"/>
+      <path d="M74 60 L90 58" fill="none" stroke="${LT}" stroke-width=".5" opacity=".4"/>
+      <!-- hojita alta -->
+      <path d="M64 48 C54 42 48 46 52 54 C56 50 62 49 64 48Z" fill="${L}" opacity=".7"/>
+      <path d="M64 48 L52 52" fill="none" stroke="${LT}" stroke-width=".7" opacity=".45"/>`;
   }
 
-  // Hojas medias en la planta adulta
-  function plantLeaves(wilt = false) {
-    const lc = wilt ? WILT_L : LEAF;
-    const lc2 = wilt ? WILT : LEAF2;
-    if (wilt) {
-      return `
-        <g opacity=".85">
-          <!-- hoja izquierda caída -->
-          <path d="M60 72 C44 68 34 74 38 82 C44 78 56 76 60 72Z" fill="${lc}"/>
-          <path d="M60 72 L44 78" fill="none" stroke="${lc2}" stroke-width="0.8" opacity=".6"/>
-          <!-- hoja derecha caída -->
-          <path d="M68 70 C84 64 96 68 92 78 C84 72 72 70 68 70Z" fill="${lc2}"/>
-          <path d="M68 70 L84 74" fill="none" stroke="${lc}" stroke-width="0.8" opacity=".6"/>
-        </g>
-      `;
-    }
+  function sprout() {
     return `
-      <!-- hoja izquierda grande -->
-      <path d="M60 65 C42 55 30 60 34 72 C42 66 56 64 60 65Z" fill="${LEAF}"/>
-      <path d="M60 65 L38 67" fill="none" stroke="${LEAF3}" stroke-width="0.9" opacity=".55"/>
-      <path d="M54 61 L36 59" fill="none" stroke="${LEAF3}" stroke-width="0.6" opacity=".4"/>
-      <!-- hoja derecha grande -->
-      <path d="M68 62 C88 50 100 56 94 68 C84 62 70 60 68 62Z" fill="${LEAF2}"/>
-      <path d="M68 62 L92 64" fill="none" stroke="${LEAF3}" stroke-width="0.9" opacity=".55"/>
-      <path d="M74 57 L94 55" fill="none" stroke="${LEAF3}" stroke-width="0.6" opacity=".4"/>
-      <!-- hojita central arriba -->
-      <path d="M64 48 C56 40 50 42 54 50 C58 46 62 46 64 48Z" fill="${LEAF}" opacity=".75"/>
-    `;
+      <path d="M60 58 C48 48 42 52 46 60 C52 56 58 56 60 58Z" fill="${LM}"/>
+      <path d="M60 58 L46 58" fill="none" stroke="${LT}" stroke-width=".7" opacity=".5"/>
+      <path d="M68 58 C80 48 86 52 82 60 C76 56 70 56 68 58Z" fill="${L}"/>
+      <path d="M68 58 L82 58" fill="none" stroke="${LT}" stroke-width=".7" opacity=".5"/>`;
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // FLORES POR TIPO — estilo botánico ilustrado
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // TÉCNICA → Girasol amarillo (como en la referencia)
-  function sunflower(c, x, y, size = 1) {
-    const s = size;
-    return `
-      <g transform="translate(${x} ${y}) scale(${s})">
-        <!-- pétalos externos — girasol -->
-        ${[0,22,44,66,88,110,132,154,176,198,220,242,264,286,308,330].map(d => `
-          <ellipse cx="0" cy="-18" rx="4.5" ry="9.5" fill="${c.petal}"
-                   transform="rotate(${d})" opacity="${d % 44 === 0 ? 1 : 0.88}"/>
-        `).join('')}
-        <!-- segunda capa de pétalos (intercalada) -->
-        ${[11,33,55,77,99,121,143,165,187,209,231,253,275,297,319,341].map(d => `
-          <ellipse cx="0" cy="-15" rx="3.5" ry="7.5" fill="${c.petalDeep}"
-                   transform="rotate(${d})" opacity=".7"/>
-        `).join('')}
-        <!-- disco central oscuro del girasol -->
-        <circle r="10" fill="${c.center}"/>
-        <!-- textura del disco -->
-        ${[-4,-2,0,2,4].flatMap(dx => [-4,-2,0,2,4].map(dy =>
-          `<circle cx="${dx}" cy="${dy}" r="1.1" fill="${c.heart}" opacity=".7"/>`
-        )).join('')}
-        <circle r="3.5" fill="${c.heart}" opacity=".8"/>
-      </g>
-    `;
-  }
-
-  // INGLÉS → Flor de 5 pétalos lila/rosa como en referencia
-  function fivePetal(c, x, y, size = 1) {
-    const s = size;
-    return `
-      <g transform="translate(${x} ${y}) scale(${s})">
-        <!-- pétalos redondeados en forma de corazón -->
-        ${[0,72,144,216,288].map(d => `
-          <g transform="rotate(${d})">
-            <path d="M0 -6 C-8 -6 -12 -18 -4 -22 C0 -24 4 -24 8 -22 C16 -18 8 -6 0 -6Z"
-                  fill="${c.petal}"/>
-            <path d="M0 -8 C-4 -8 -7 -16 -2 -20 C0 -21 2 -21 4 -20 C9 -16 4 -8 0 -8Z"
-                  fill="${c.petalDeep}" opacity=".5"/>
-          </g>
-        `).join('')}
-        <!-- centro -->
-        <circle r="6" fill="${c.center}"/>
-        <circle r="3" fill="${c.heart}"/>
-        <!-- estambres -->
-        ${[0,60,120,180,240,300].map(d => `
-          <circle cx="${Math.round(4.5*Math.sin(d*Math.PI/180))}"
-                  cy="${Math.round(-4.5*Math.cos(d*Math.PI/180))}"
-                  r="0.9" fill="${c.petal}" opacity=".8"/>
-        `).join('')}
-      </g>
-    `;
-  }
-
-  // TRANSVERSAL → Flor blanca estrellada (como jasmine/aster de referencia)
-  function starFlower(c, x, y, size = 1) {
-    const s = size;
-    return `
-      <g transform="translate(${x} ${y}) scale(${s})">
-        <!-- pétalos estrechos y largos estilo aster -->
-        ${[0,30,60,90,120,150,180,210,240,270,300,330].map(d => `
-          <ellipse cx="0" cy="-16" rx="3.2" ry="10" fill="${c.petal}"
-                   transform="rotate(${d})"
-                   opacity="${d % 60 === 0 ? 1 : 0.82}"/>
-        `).join('')}
-        <!-- capa interna de pétalos -->
-        ${[15,45,75,105,135,165,195,225,255,285,315,345].map(d => `
-          <ellipse cx="0" cy="-12" rx="2.2" ry="7" fill="${c.petalDeep}"
-                   transform="rotate(${d})" opacity=".6"/>
-        `).join('')}
-        <!-- centro amarillo -->
-        <circle r="6.5" fill="${c.center}"/>
-        <circle r="3.5" fill="${c.heart}"/>
-      </g>
-    `;
-  }
-
-  // INDUCCIÓN → Campanilla rosada (como en referencia)
-  function bellFlower(c, x, y, size = 1) {
-    const s = size;
-    return `
-      <g transform="translate(${x} ${y}) scale(${s})">
-        <!-- cáliz (base verde) -->
-        <path d="M0 4 C-4 0 -4 -4 0 -6 C4 -4 4 0 0 4Z" fill="${LEAF2}" opacity=".8"/>
-        <!-- campana principal -->
-        <path d="M0 4 C-16 4 -20 -8 -16 -18 C-10 -26 10 -26 16 -18 C20 -8 16 4 0 4Z"
-              fill="${c.petal}"/>
-        <!-- sombra interna de la campana -->
-        <path d="M0 4 C-10 2 -14 -6 -10 -16 C-6 -22 6 -22 10 -16 C14 -6 10 2 0 4Z"
-              fill="${c.petalDeep}" opacity=".5"/>
-        <!-- líneas internas de la campana -->
-        <path d="M0 4 L0 -22" fill="none" stroke="${c.center}" stroke-width="0.8" opacity=".35"/>
-        <path d="M-8 0 L-14 -16" fill="none" stroke="${c.petalDeep}" stroke-width="0.6" opacity=".4"/>
-        <path d="M8 0 L14 -16" fill="none" stroke="${c.petalDeep}" stroke-width="0.6" opacity=".4"/>
-        <!-- borde de la campana con ondas -->
-        <path d="M-16 4 C-12 8 -6 10 0 10 C6 10 12 8 16 4"
-              fill="none" stroke="${c.petal}" stroke-width="1.5" opacity=".6"/>
-        <!-- pistilo -->
-        <circle cx="0" cy="-4" r="2" fill="${c.center}" opacity=".8"/>
-      </g>
-    `;
-  }
-
-  // PRÁCTICA → Rosa/flor en espiral (elegante)
-  function roseFlower(c, x, y, size = 1) {
-    const s = size;
-    return `
-      <g transform="translate(${x} ${y}) scale(${s})">
-        <!-- sépalos verdes -->
-        ${[0,72,144,216,288].map(d => `
-          <path d="M0 0 C-3 6 -4 14 0 18 C4 14 3 6 0 0Z"
-                fill="${LEAF2}" transform="rotate(${d})" opacity=".8"/>
-        `).join('')}
-        <!-- pétalos externos -->
-        ${[0,72,144,216,288].map(d => `
-          <path d="M0 -4 C-10 -4 -16 -16 -8 -24 C-2 -28 2 -28 8 -24 C16 -16 10 -4 0 -4Z"
-                fill="${c.petal}" transform="rotate(${d})"/>
-        `).join('')}
-        <!-- pétalos medios -->
-        ${[36,108,180,252,324].map(d => `
-          <path d="M0 -4 C-7 -4 -10 -13 -4 -18 C-1 -21 1 -21 4 -18 C10 -13 7 -4 0 -4Z"
-                fill="${c.petalDeep}" transform="rotate(${d})"/>
-        `).join('')}
-        <!-- pétalos internos -->
-        ${[0,120,240].map(d => `
-          <path d="M0 -4 C-4 -4 -6 -10 -2 -13 C0 -15 2 -13 6 -10 C8 -7 4 -4 0 -4Z"
-                fill="${c.center}" transform="rotate(${d})" opacity=".85"/>
-        `).join('')}
-        <!-- corazón -->
-        <circle r="3.5" fill="${c.heart}" opacity=".9"/>
-      </g>
-    `;
-  }
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // ESTADOS ESPECIALES (brote, capullo, marchita)
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // Capullo cerrado (estado 3 - bud)
+  // ── Capullo ──────────────────────────────────────────────────────────────
   function bud(c, x, y) {
     return `
       <g transform="translate(${x} ${y})">
-        <!-- sépalos -->
-        <path d="M0 8 C-5 4 -6 -4 -2 -10 C0 -12 2 -12 4 -10 C8 -4 5 4 0 8Z"
-              fill="${LEAF2}"/>
-        <!-- capullo cerrado -->
-        <ellipse cx="0" cy="-4" rx="7" ry="12" fill="${c.petal}"/>
-        <!-- tono lateral -->
-        <ellipse cx="3" cy="-4" rx="3.5" ry="10" fill="${c.petalDeep}" opacity=".5"/>
-        <!-- puntita superior -->
-        <ellipse cx="0" cy="-14" rx="2.5" ry="3" fill="${c.center}" opacity=".7"/>
-      </g>
-    `;
+        <path d="M0 8 C-5 4 -5 -4 0 -8 C5 -4 5 4 0 8Z" fill="${L}"/>
+        <path d="M-3 5 C-7 1 -6 -7 -2 -10 L0 -8Z" fill="${LM}" opacity=".7"/>
+        <path d="M3 5 C7 1 6 -7 2 -10 L0 -8Z" fill="${L}" opacity=".6"/>
+        <path d="M-7 6 C-11 0 -9 -14 0 -22 C9 -14 11 0 7 6 C4 10 -4 10 -7 6Z" fill="${c.pd}"/>
+        <path d="M-3 6 C-7 0 -5 -14 0 -22 C5 -14 7 0 3 6 C1 9 -1 9 -3 6Z" fill="${c.p}"/>
+        <path d="M-1 -18 C0 -21 1 -21 1 -18" fill="none" stroke="${c.p}" stroke-width="1.2" opacity=".6"/>
+      </g>`;
   }
 
-  // Flor marchita (estado 6)
-  function wiltHead(c, x, y) {
+  // ── Flor marchita ────────────────────────────────────────────────────────
+  function wiltBloom(c, x, y) {
     return `
-      <g transform="translate(${x} ${y}) rotate(28)">
-        <!-- pétalos caídos y arrugados -->
-        <path d="M0 0 C-8 4 -12 14 -8 20" fill="none" stroke="${WILT_P}" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M0 0 C4 6 8 16 4 22" fill="none" stroke="${WILT}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M0 0 C10 2 16 10 12 18" fill="none" stroke="${WILT_P}" stroke-width="3" stroke-linecap="round"/>
-        <path d="M0 0 C-10 -2 -14 8 -10 14" fill="none" stroke="${WILT}" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M0 0 C2 -8 10 -12 8 -4" fill="none" stroke="${WILT_P}" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- centro seco -->
-        <circle r="5.5" fill="${WILT}"/>
-        <circle r="2.5" fill="${WILT_L}"/>
-      </g>
-    `;
+      <g transform="translate(${x} ${y}) rotate(32)">
+        <path d="M0 0 C-7 5 -10 18 -6 26" stroke="${WP}" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M0 0 C5 7 6 20 2 28" stroke="${W}" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M0 0 C10 3 14 14 10 22" stroke="${WP}" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M0 0 C-10 2 -14 12 -10 20" stroke="${W}" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M0 0 C2 -10 8 -14 5 -6" stroke="${WP}" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <circle r="5.5" fill="${W}"/>
+        <circle r="2.5" fill="${WL}"/>
+      </g>`;
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // DISPATCHER: elige la flor según tipo
-  // ══════════════════════════════════════════════════════════════════════════
-  function head(type, mode, x, y) {
-    const c = flowers[type] || flowers.transversal;
-    if (mode === "bud")   return bud(c, x, y);
-    if (mode === "wilt")  return wiltHead(c, x, y);
+  // ════════════════════════════════════════════════════════════════════════
+  // FLORES BOTÁNICAS — paths bezier por tipo
+  // ════════════════════════════════════════════════════════════════════════
 
-    // bloom completo
-    if (type === "tecnica")     return sunflower(c, x, y);
-    if (type === "ingles")      return fivePetal(c, x, y);
-    if (type === "induccion")   return bellFlower(c, x, y);
-    if (type === "practica")    return roseFlower(c, x, y);
-    return starFlower(c, x, y); // transversal
+  // TÉCNICA: Girasol amarillo con pétalos elongados y centro texturizado
+  function sunflower(c, x, y) {
+    // Pétalo elongado real: ancho en base, afinado en punta
+    const outer = [0,22.5,45,67.5,90,112.5,135,157.5,180,202.5,225,247.5,270,292.5,315,337.5].map((d,i) => `
+      <path d="M0 0 C-4.5 -2 -5.5 -12 -2.5 -22 C-1 -27 1 -27 2.5 -22 C5.5 -12 4.5 -2 0 0Z"
+            fill="${i%2===0?c.p:c.pd}" transform="rotate(${d})"
+            stroke="${c.pb}" stroke-width=".4" stroke-linejoin="round"/>`).join('');
+    const inner = [11.25,33.75,56.25,78.75,101.25,123.75,146.25,168.75].map(d => `
+      <path d="M0 0 C-2.5 -1 -3 -8 -1.2 -14 C-.4 -17 .4 -17 1.2 -14 C3 -8 2.5 -1 0 0Z"
+            fill="${c.pd}" transform="rotate(${d})" opacity=".8"/>`).join('');
+    // Semillas en espiral en el centro
+    const seeds = [[0,0,1.5],[3,0,1.2],[0,-3,1.2],[-3,0,1.2],[0,3,1.2],
+                   [5.5,2,1],[2,5.5,1],[-5.5,2,1],[-2,-5.5,1],[5.5,-2,1],[-2,5.5,1]]
+      .map(([sx,sy,r]) => `<ellipse cx="${sx}" cy="${sy}" rx="${r}" ry="${r*.75}" fill="${c.h}" opacity=".8" transform="rotate(12)"/>`).join('');
+    return `
+      <g transform="translate(${x} ${y})">
+        ${outer}${inner}
+        <circle r="10.5" fill="${c.c}"/>
+        <circle r="9.5" fill="${c.c}" opacity=".4"/>
+        ${seeds}
+        <circle r="2.5" fill="${c.h}"/>
+      </g>`;
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // ESTADOS DEL JARDÍN (1 → 6)
-  // ══════════════════════════════════════════════════════════════════════════
+  // INGLÉS: Flor 5 pétalos redondeados estilo prímula (ref top-right)
+  function primrose(c, x, y) {
+    const petals = [0,72,144,216,288].map(d => `
+      <path d="M0 -5
+               C-10 -5 -16 -18 -8 -26
+               Q0 -30 8 -26
+               C16 -18 10 -5 0 -5Z"
+            fill="${c.p}" transform="rotate(${d})"
+            stroke="${c.pb}" stroke-width=".5"/>
+      <path d="M0 -7 C-6 -7 -10 -16 -4 -22 Q0 -25 4 -22 C10 -16 6 -7 0 -7Z"
+            fill="${c.pd}" transform="rotate(${d})" opacity=".45"/>`).join('');
+    const stamens = [0,60,120,180,240,300].map(d => `
+      <line x1="${(4.5*Math.sin(d*Math.PI/180)).toFixed(1)}"
+            y1="${(-4.5*Math.cos(d*Math.PI/180)).toFixed(1)}"
+            x2="${(7*Math.sin(d*Math.PI/180)).toFixed(1)}"
+            y2="${(-7*Math.cos(d*Math.PI/180)).toFixed(1)}"
+            stroke="${c.p}" stroke-width=".8" opacity=".7"/>
+      <circle cx="${(7.5*Math.sin(d*Math.PI/180)).toFixed(1)}"
+              cy="${(-7.5*Math.cos(d*Math.PI/180)).toFixed(1)}"
+              r=".9" fill="${c.p}" opacity=".8"/>`).join('');
+    return `
+      <g transform="translate(${x} ${y})">
+        ${petals}
+        <circle r="7" fill="${c.c}"/>
+        ${stamens}
+        <circle r="3.5" fill="${c.h}"/>
+      </g>`;
+  }
+
+  // TRANSVERSAL: Aster blanco con pétalos finos tipo margarita (ref top-left)
+  function aster(c, x, y) {
+    const outer = [...Array(16)].map((_,i) => {
+      const d = i*22.5, alt = i%2===0;
+      return `<path d="M0 0 C-2.5 -2 -3 -13 0 -20 C3 -13 2.5 -2 0 0Z"
+                    fill="${alt?c.p:c.pd}" transform="rotate(${d})"
+                    stroke="${c.pb}" stroke-width=".3" opacity="${alt?'1':'.8'}"/>`;
+    }).join('');
+    return `
+      <g transform="translate(${x} ${y})">
+        ${outer}
+        <circle r="7.5" fill="${c.c}"/>
+        <circle r="5" fill="${c.c}" opacity=".35"/>
+        <circle r="3" fill="${c.h}"/>
+      </g>`;
+  }
+
+  // INDUCCIÓN: Foxglove / campanula rosada (ref bottom-left)
+  function foxglove(c, x, y) {
+    // 3 campanas escalonadas
+    function bell(bx, by, sc, rot=0) {
+      return `<g transform="translate(${bx} ${by}) rotate(${rot}) scale(${sc})">
+        <path d="M0 6 C-12 6 -16 -6 -12 -18 C-6 -26 6 -26 12 -18 C16 -6 12 6 0 6Z" fill="${c.pd}"/>
+        <path d="M0 6 C-8 6 -10 -4 -6 -14 C-2 -20 2 -20 6 -14 C10 -4 8 6 0 6Z" fill="${c.p}"/>
+        <path d="M-4 -10 L0 -20 L4 -10" fill="none" stroke="${c.pd}" stroke-width=".8" opacity=".5"/>
+        <path d="M-12 6 C-8 10 8 10 12 6" fill="none" stroke="${c.pd}" stroke-width="1.2" opacity=".5"/>
+        <circle cx="-3" cy="-8" r="1.2" fill="${c.pb}" opacity=".6"/>
+        <circle cx="2" cy="-12" r="1" fill="${c.pb}" opacity=".5"/>
+        <circle cx="-1" cy="-4" r="1.5" fill="${c.pb}" opacity=".5"/>
+        <path d="M0 6 L0 14" stroke="${L}" stroke-width="1.5" stroke-linecap="round"/>
+      </g>`;
+    }
+    return `
+      <g transform="translate(${x} ${y})">
+        ${bell(-10, 18, 0.65, -15)}
+        ${bell(10, 12, 0.72, 10)}
+        ${bell(0, 2, 0.88, -5)}
+      </g>`;
+  }
+
+  // PRÁCTICA: Rosa con pétalos en capas superpuestas
+  function rose(c, x, y) {
+    const sep = [0,72,144,216,288].map(d => `
+      <path d="M0 0 C-3 4 -3 12 0 14 C3 12 3 4 0 0Z" fill="${LM}" transform="rotate(${d})"/>`).join('');
+    const outer = [0,72,144,216,288].map(d => `
+      <path d="M0 -5
+               C-11 -5 -18 -18 -10 -26
+               Q0 -30 10 -26
+               C18 -18 11 -5 0 -5Z"
+            fill="${c.pd}" transform="rotate(${d})"/>
+      <path d="M0 -6 C-7 -6 -12 -16 -6 -22 Q0 -26 6 -22 C12 -16 7 -6 0 -6Z"
+            fill="${c.p}" transform="rotate(${d})" opacity=".7"/>`).join('');
+    const mid = [36,108,180,252,324].map(d => `
+      <path d="M0 -5 C-8 -5 -12 -14 -6 -20 Q0 -23 6 -20 C12 -14 8 -5 0 -5Z"
+            fill="${c.p}" transform="rotate(${d})"/>
+      <path d="M0 -6 C-4 -6 -7 -12 -3 -17 Q0 -19 3 -17 C7 -12 4 -6 0 -6Z"
+            fill="${c.pd}" transform="rotate(${d})" opacity=".5"/>`).join('');
+    return `
+      <g transform="translate(${x} ${y})">
+        ${sep}${outer}${mid}
+        <circle r="6" fill="${c.c}"/>
+        <circle r="3.5" fill="${c.h}"/>
+        <circle r="1.5" fill="${c.p}" opacity=".5"/>
+      </g>`;
+  }
+
+  // ─── dispatcher ──────────────────────────────────────────────────────────
+  function bloom(type, x, y) {
+    const c = flowers[type]||flowers.transversal;
+    if (type==="tecnica")   return sunflower(c,x,y);
+    if (type==="ingles")    return primrose(c,x,y);
+    if (type==="induccion") return foxglove(c,x,y);
+    if (type==="practica")  return rose(c,x,y);
+    return aster(c,x,y);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  // ESTADOS 1–6
+  // ════════════════════════════════════════════════════════════════════════
   function draw(stateId, flowerType) {
-    const type = flowers[flowerType] ? flowerType : "transversal";
+    const type = flowers[flowerType]?flowerType:"transversal";
     const id = String(stateId);
 
-    // Estado 1: Tierra sin sembrar
-    if (id === "1") {
-      return frame(`
-        ${soilMound()}
-        <!-- marcas de tierra removida -->
-        <path d="M40 80 Q52 76 62 80" fill="none" stroke="${SOIL3}" stroke-width="2" stroke-linecap="round" opacity=".4"/>
-        <path d="M66 78 Q76 74 86 79" fill="none" stroke="${SOIL3}" stroke-width="1.8" stroke-linecap="round" opacity=".35"/>
-        <!-- pequeñas piedras decorativas -->
-        <ellipse cx="34" cy="75" rx="2.5" ry="1.5" fill="${SOIL2}" opacity=".5"/>
-        <ellipse cx="94" cy="77" rx="2" ry="1.3" fill="${SOIL3}" opacity=".45"/>
-      `);
-    }
+    if (id==="1") return frame(`${soil()}
+      <path d="M38 84 Q52 80 60 84" fill="none" stroke="${T3}" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+      <path d="M68 82 Q78 78 86 82" fill="none" stroke="${T3}" stroke-width="1.2" stroke-linecap="round" opacity=".35"/>
+      <ellipse cx="35" cy="77" rx="2.5" ry="1.5" fill="${T2}" opacity=".5"/>
+      <ellipse cx="94" cy="79" rx="2" ry="1.3" fill="${T3}" opacity=".4"/>`);
 
-    // Estado 2: Semilla plantada
-    if (id === "2") {
-      return frame(`
-        ${soilMound()}
-        ${seedInSoil()}
-        <!-- surco alrededor de la semilla -->
-        <path d="M52 84 Q64 88 76 83" fill="none" stroke="${SOIL3}" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
-      `);
-    }
+    if (id==="2") return frame(`${soil()}${seedEl()}
+      <path d="M52 84 Q64 88 76 83" fill="none" stroke="${T3}" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>`);
 
-    // Estado 4: Brote recién nacido
-    if (id === "4") {
-      return frame(`
-        ${soilMound()}
-        ${stem(86, 60)}
-        ${sproutLeaves()}
-        <!-- gota de rocío -->
-        <ellipse cx="60" cy="56" rx="1.8" ry="2.4" fill="#D4F0FF" opacity=".6"/>
-      `);
-    }
+    if (id==="4") return frame(`${soil()}${stm(85,60)}${sprout()}
+      <ellipse cx="61" cy="57" rx="1.5" ry="2" fill="#D4EEFF" opacity=".55"/>`);
 
-    // Estado 3: Planta con capullo
-    if (id === "3") {
-      return frame(`
-        ${soilMound()}
-        ${stem(86, 36)}
-        ${plantLeaves()}
-        ${head(type, "bud", 64, 28)}
-      `);
-    }
+    if (id==="3") return frame(`${soil()}${stm(85,38)}${leafPair()}${bud(flowers[type]||flowers.transversal,64,30)}`);
 
-    // Estado 5: Flor en bloom completo
-    if (id === "5") {
-      return frame(`
-        ${soilMound()}
-        ${stem(86, 38)}
-        ${plantLeaves()}
-        ${head(type, "bloom", 64, 28)}
-      `);
-    }
+    if (id==="5") return frame(`${soil()}${stm(85,40)}${leafPair()}${bloom(type,64,28)}`);
 
-    // Estado 6: Flor marchita
-    return frame(`
-      ${soilMound()}
-      <!-- tallo doblado -->
-      <path d="M64 86 C66 72 74 60 70 46 C68 38 72 34 74 28"
-            fill="none" stroke="${WILT_L}" stroke-width="2.8" stroke-linecap="round"/>
-      ${plantLeaves(true)}
-      ${head(type, "wilt", 74, 40)}
-    `);
+    // marchita
+    return frame(`${soil()}
+      <path d="M64 86 C67 72 76 58 72 44 C70 36 73 30 75 26"
+            fill="none" stroke="${WL}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M75.5 26 C74 25 74 24 75 24" fill="none" stroke="${WL}" stroke-width="2" stroke-linecap="round"/>
+      ${leafPair(true)}${wiltBloom(flowers[type]||flowers.transversal,74,40)}`);
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // MINIATURAS y LEYENDA
-  // ══════════════════════════════════════════════════════════════════════════
+  // ── Miniatura para leyenda ────────────────────────────────────────────────
   function mini(type) {
-    const c = flowers[type] || flowers.transversal;
-    let bloom;
-    if (type === "tecnica")   bloom = sunflower(c, 28, 28, 0.72);
-    else if (type === "ingles")    bloom = fivePetal(c, 28, 28, 0.72);
-    else if (type === "induccion") bloom = bellFlower(c, 28, 28, 0.72);
-    else if (type === "practica")  bloom = roseFlower(c, 28, 28, 0.72);
-    else                           bloom = starFlower(c, 28, 28, 0.72);
-    return `<svg viewBox="0 0 56 56" class="flora-mini">${bloom}</svg>`;
+    const c = flowers[type]||flowers.transversal;
+    let inner;
+    if (type==="tecnica")   inner = sunflower(c,28,28);
+    else if (type==="ingles")    inner = primrose(c,28,28);
+    else if (type==="induccion") inner = foxglove(c,28,28);
+    else if (type==="practica")  inner = rose(c,28,28);
+    else inner = aster(c,28,28);
+    return `<svg viewBox="0 0 56 56" class="flora-mini">${inner}</svg>`;
   }
 
   function legend() {
-    return Object.keys(flowers).map(type => `
-      <span class="flora-key-item">
-        ${mini(type)}
-        <em>${flowers[type].label}</em>
-      </span>
-    `).join('');
+    return Object.keys(flowers).map(t=>`
+      <span class="flora-key-item">${mini(t)}<em>${flowers[t].label}</em></span>`).join('');
   }
 
   function frame(inner) {
