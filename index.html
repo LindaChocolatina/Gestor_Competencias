@@ -3,44 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardín de Competencias SENA 🌱</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#4B5D43">
+    <title>Jardín de Competencias · ADSO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Great+Vibes&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-elements">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
+    <a class="skip-link" href="#jardin">Ir al jardín</a>
+
+    <svg width="0" height="0" class="svg-defs" aria-hidden="true">
+        <defs>
+            <linearGradient id="petalCream" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FFFEF6"/>
+                <stop offset="100%" stop-color="#F0E6D0"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <section class="cover" aria-label="Portada">
+        <div class="cover-flora" aria-hidden="true">
+            <svg class="flora-canvas" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+                <!-- Jasmine, top left -->
+                <g transform="translate(70,40)">
+                    <path d="M40 90 C30 50 55 20 70 8" fill="none" stroke="#5C7A40" stroke-width="2"/>
+                    <path d="M48 70 C70 55 95 62 108 78" fill="none" stroke="#5C7A40" stroke-width="1.6"/>
+                    <path d="M36 58 C18 48 8 28 14 12" fill="none" stroke="#5C7A40" stroke-width="1.6"/>
+                    <ellipse cx="42" cy="62" rx="16" ry="7" fill="#4F6E38" transform="rotate(-40 42 62)"/>
+                    <ellipse cx="78" cy="58" rx="18" ry="8" fill="#5C7A40" transform="rotate(25 78 58)"/>
+                    <ellipse cx="28" cy="38" rx="14" ry="6" fill="#6B8F4A" transform="rotate(-20 28 38)"/>
+                    <g transform="translate(70,10)">
+                        <ellipse cx="0" cy="-8" rx="5" ry="9" fill="#FFFEF6"/>
+                        <ellipse cx="7" cy="2" rx="5" ry="9" fill="#F7F1E4" transform="rotate(72)"/>
+                        <ellipse cx="-4" cy="6" rx="5" ry="9" fill="#FFFEF6" transform="rotate(144)"/>
+                        <ellipse cx="-8" cy="-3" rx="5" ry="9" fill="#F0E6D0" transform="rotate(216)"/>
+                        <ellipse cx="5" cy="-6" rx="5" ry="9" fill="#FFF8EE" transform="rotate(288)"/>
+                        <circle cx="0" cy="0" r="3.2" fill="#E3B84A"/>
+                    </g>
+                    <g transform="translate(18,16)">
+                        <ellipse cx="0" cy="-7" rx="4.5" ry="8" fill="#FFFEF6"/>
+                        <ellipse cx="6" cy="2" rx="4.5" ry="8" fill="#F7F1E4" transform="rotate(72)"/>
+                        <ellipse cx="-4" cy="5" rx="4.5" ry="8" fill="#FFFEF6" transform="rotate(144)"/>
+                        <ellipse cx="-7" cy="-2" rx="4.5" ry="8" fill="#F0E6D0" transform="rotate(216)"/>
+                        <circle cx="0" cy="0" r="2.6" fill="#E3B84A"/>
+                    </g>
+                    <g transform="translate(108,72)">
+                        <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#FFFEF6"/>
+                        <ellipse cx="6" cy="2" rx="4" ry="7" fill="#F7F1E4" transform="rotate(90)"/>
+                        <ellipse cx="0" cy="6" rx="4" ry="7" fill="#FFFEF6" transform="rotate(180)"/>
+                        <ellipse cx="-6" cy="2" rx="4" ry="7" fill="#F0E6D0" transform="rotate(270)"/>
+                        <circle cx="0" cy="0" r="2.4" fill="#E3B84A"/>
+                    </g>
+                </g>
+
+                <!-- Yellow daisy, mid left -->
+                <g transform="translate(90,280)">
+                    <path d="M58 70 C62 140 50 210 56 310" fill="none" stroke="#5C7A40" stroke-width="2.4"/>
+                    <ellipse cx="48" cy="150" rx="10" ry="28" fill="#4F6E38" transform="rotate(-28 48 150)"/>
+                    <g transform="translate(58,62)">
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E8C04A"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(22.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#F0C85A" transform="rotate(45)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(67.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#D4A63A" transform="rotate(90)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E8C04A" transform="rotate(112.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(135)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#F0C85A" transform="rotate(157.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(180)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#D4A63A" transform="rotate(202.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E8C04A" transform="rotate(225)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(247.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#F0C85A" transform="rotate(270)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E3B84A" transform="rotate(292.5)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#D4A63A" transform="rotate(315)"/>
+                        <ellipse cx="0" cy="-32" rx="5.5" ry="30" fill="#E8C04A" transform="rotate(337.5)"/>
+                        <circle cx="0" cy="0" r="11" fill="#C4922E"/>
+                        <circle cx="0" cy="0" r="6.5" fill="#A87828"/>
+                    </g>
+                </g>
+
+                <!-- Fern + bell flowers, bottom left -->
+                <g transform="translate(40,520)">
+                    <path d="M36 10 C28 70 40 130 30 190" fill="none" stroke="#5C7A40" stroke-width="2"/>
+                    <ellipse cx="18" cy="28" rx="14" ry="6" fill="#6B8F4A" transform="rotate(-20 18 28)"/>
+                    <ellipse cx="52" cy="48" rx="16" ry="6" fill="#4F6E38" transform="rotate(22 52 48)"/>
+                    <ellipse cx="16" cy="70" rx="15" ry="6" fill="#5C7A40" transform="rotate(-24 16 70)"/>
+                    <ellipse cx="50" cy="92" rx="17" ry="6" fill="#6B8F4A" transform="rotate(20 50 92)"/>
+                    <ellipse cx="14" cy="114" rx="14" ry="5.5" fill="#4F6E38" transform="rotate(-22 14 114)"/>
+                    <ellipse cx="46" cy="138" rx="15" ry="5.5" fill="#5C7A40" transform="rotate(18 46 138)"/>
+                    <g transform="translate(88,20)">
+                        <path d="M8 0 C12 50 4 100 10 170" fill="none" stroke="#5C7A40" stroke-width="1.8"/>
+                        <ellipse cx="2" cy="22" rx="6" ry="10" fill="#E3B84A" transform="rotate(-30 2 22)"/>
+                        <ellipse cx="16" cy="40" rx="6" ry="10" fill="#C45C74" transform="rotate(28 16 40)"/>
+                        <ellipse cx="0" cy="58" rx="5.5" ry="9" fill="#E8C04A" transform="rotate(-26 0 58)"/>
+                        <ellipse cx="18" cy="78" rx="6" ry="10" fill="#C45C74" transform="rotate(30 18 78)"/>
+                        <ellipse cx="2" cy="98" rx="5" ry="9" fill="#D4A63A" transform="rotate(-22 2 98)"/>
+                        <ellipse cx="16" cy="118" rx="5.5" ry="9" fill="#B84D68" transform="rotate(24 16 118)"/>
+                        <ellipse cx="4" cy="140" rx="5" ry="8" fill="#C45C74" transform="rotate(-18 4 140)"/>
+                    </g>
+                </g>
+
+                <!-- White blossom branch, top right -->
+                <g transform="translate(980,30)">
+                    <path d="M20 20 C60 40 40 90 90 110" fill="none" stroke="#5C7A40" stroke-width="2"/>
+                    <path d="M48 48 C70 38 110 50 130 36" fill="none" stroke="#5C7A40" stroke-width="1.5"/>
+                    <ellipse cx="58" cy="70" rx="16" ry="7" fill="#4F6E38" transform="rotate(40 58 70)"/>
+                    <ellipse cx="100" cy="92" rx="14" ry="6" fill="#6B8F4A" transform="rotate(-10 100 92)"/>
+                    <g transform="translate(88,108)">
+                        <ellipse cx="0" cy="-7" rx="5" ry="8" fill="#FFFEF6"/>
+                        <ellipse cx="7" cy="2" rx="5" ry="8" fill="#F7F1E4" transform="rotate(72)"/>
+                        <ellipse cx="-3" cy="6" rx="5" ry="8" fill="#FFFEF6" transform="rotate(144)"/>
+                        <ellipse cx="-8" cy="-2" rx="5" ry="8" fill="#F0E6D0" transform="rotate(216)"/>
+                        <circle cx="0" cy="0" r="2.8" fill="#E3B84A"/>
+                    </g>
+                    <g transform="translate(128,38)">
+                        <ellipse cx="0" cy="-6" rx="4.5" ry="7" fill="#FFFEF6"/>
+                        <ellipse cx="6" cy="2" rx="4.5" ry="7" fill="#F7F1E4" transform="rotate(90)"/>
+                        <ellipse cx="0" cy="6" rx="4.5" ry="7" fill="#FFFEF6"/>
+                        <ellipse cx="-6" cy="2" rx="4.5" ry="7" fill="#F0E6D0"/>
+                        <circle cx="0" cy="0" r="2.4" fill="#E3B84A"/>
+                    </g>
+                    <g transform="translate(40,28)">
+                        <ellipse cx="0" cy="-6" rx="4" ry="7" fill="#FFFEF6"/>
+                        <ellipse cx="6" cy="1" rx="4" ry="7" fill="#F7F1E4" transform="rotate(80)"/>
+                        <ellipse cx="-1" cy="6" rx="4" ry="7" fill="#FFFEF6"/>
+                        <ellipse cx="-6" cy="0" rx="4" ry="7" fill="#F0E6D0"/>
+                        <circle cx="0" cy="0" r="2.2" fill="#E3B84A"/>
+                    </g>
+                </g>
+
+                <!-- Lupine / foxglove, bottom right -->
+                <g transform="translate(1040,430)">
+                    <path d="M40 250 C38 160 42 80 40 0" fill="none" stroke="#5C7A40" stroke-width="2.2"/>
+                    <ellipse cx="40" cy="8" rx="5" ry="8" fill="#E8D8F0"/>
+                    <ellipse cx="40" cy="22" rx="7" ry="10" fill="#D2C0DC"/>
+                    <ellipse cx="32" cy="38" rx="8" ry="11" fill="#C9B0D8"/>
+                    <ellipse cx="48" cy="52" rx="8" ry="11" fill="#D8C8E4"/>
+                    <ellipse cx="30" cy="70" rx="9" ry="12" fill="#C45C74" opacity=".85"/>
+                    <ellipse cx="50" cy="86" rx="9" ry="12" fill="#C9B0D8"/>
+                    <ellipse cx="28" cy="106" rx="10" ry="13" fill="#B89BC8"/>
+                    <ellipse cx="52" cy="124" rx="10" ry="13" fill="#D2C0DC"/>
+                    <ellipse cx="30" cy="144" rx="11" ry="13" fill="#C45C74" opacity=".7"/>
+                    <ellipse cx="50" cy="164" rx="10" ry="12" fill="#C9B0D8"/>
+                    <ellipse cx="32" cy="184" rx="9" ry="12" fill="#B89BC8"/>
+                    <ellipse cx="48" cy="204" rx="8" ry="11" fill="#D2C0DC"/>
+                    <g transform="translate(-30,200)" fill="none" stroke="#C4A882" stroke-width="1.4">
+                        <path d="M10 40 C0 20 8 8 22 0"/>
+                        <path d="M22 0 C30 18 18 32 8 44"/>
+                        <path d="M40 48 C48 22 38 6 28 2"/>
+                        <path d="M55 42 C62 18 52 4 40 8"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div class="cover-content">
+            <p class="cover-script">Jardín de</p>
+            <h1>Competencias</h1>
+            <p class="cover-kicker">Semilla, Plántula, Flor</p>
+            <p class="cover-meta">Ficha 3336242 · Análisis y Desarrollo de Software</p>
+            <a class="scroll-cue" href="#jardin">
+                Entrar al jardín
+                <span class="scroll-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+
+        <div class="cover-mob-flora" aria-hidden="true">
+            <svg class="mob-daisy" viewBox="0 0 80 80">
+                <g transform="translate(40,40)">
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E8C04A" transform="rotate(45)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#D4A63A" transform="rotate(90)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A" transform="rotate(135)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#F0C85A" transform="rotate(180)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A" transform="rotate(225)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#D4A63A" transform="rotate(270)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E8C04A" transform="rotate(315)"/>
+                    <circle r="8" fill="#C4922E"/>
+                </g>
+            </svg>
+            <svg class="mob-lupine" viewBox="0 0 40 120">
+                <path d="M20 118 V8" fill="none" stroke="#5C7A40" stroke-width="2"/>
+                <ellipse cx="20" cy="12" rx="4" ry="6" fill="#E8D8F0"/>
+                <ellipse cx="20" cy="26" rx="6" ry="8" fill="#D2C0DC"/>
+                <ellipse cx="14" cy="42" rx="7" ry="9" fill="#C9B0D8"/>
+                <ellipse cx="26" cy="58" rx="7" ry="9" fill="#C45C74" opacity=".8"/>
+                <ellipse cx="14" cy="76" rx="8" ry="10" fill="#B89BC8"/>
+                <ellipse cx="26" cy="94" rx="7" ry="9" fill="#D2C0DC"/>
+            </svg>
+        </div>
+    </section>
+
+    <div class="workspace" id="jardin">
+        <div class="workspace-flora" aria-hidden="true">
+            <svg class="mini-daisy" viewBox="0 0 80 80">
+                <g transform="translate(40,40)">
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E8C04A" transform="rotate(45)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#D4A63A" transform="rotate(90)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A" transform="rotate(135)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#F0C85A" transform="rotate(180)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E3B84A" transform="rotate(225)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#D4A63A" transform="rotate(270)"/>
+                    <ellipse cx="0" cy="-22" rx="4" ry="20" fill="#E8C04A" transform="rotate(315)"/>
+                    <circle r="8" fill="#C4922E"/>
+                </g>
+            </svg>
+            <svg class="mini-lupine" viewBox="0 0 40 120">
+                <path d="M20 118 V8" fill="none" stroke="#5C7A40" stroke-width="2"/>
+                <ellipse cx="20" cy="12" rx="4" ry="6" fill="#E8D8F0"/>
+                <ellipse cx="20" cy="26" rx="6" ry="8" fill="#D2C0DC"/>
+                <ellipse cx="14" cy="42" rx="7" ry="9" fill="#C9B0D8"/>
+                <ellipse cx="26" cy="58" rx="7" ry="9" fill="#C45C74" opacity=".8"/>
+                <ellipse cx="14" cy="76" rx="8" ry="10" fill="#B89BC8"/>
+                <ellipse cx="26" cy="94" rx="7" ry="9" fill="#D2C0DC"/>
+            </svg>
+        </div>
+
+        <section class="palette" aria-label="Resumen del jardín">
+            <figure class="swatch">
+                <div class="swatch-circle berry" id="stat-pending">0</div>
+                <figcaption>Por florecer</figcaption>
+            </figure>
+            <figure class="swatch">
+                <div class="swatch-circle lilac" id="stat-total">0</div>
+                <figcaption>RAPs</figcaption>
+            </figure>
+            <figure class="swatch">
+                <div class="swatch-circle sage" id="stat-comps">0</div>
+                <figcaption>Competencias</figcaption>
+            </figure>
+            <figure class="swatch">
+                <div class="swatch-circle mustard" id="stat-percent">0%</div>
+                <figcaption>En flor</figcaption>
+            </figure>
+        </section>
+
+        <header class="toolbar">
+            <div class="vine" aria-hidden="true"><div class="vine-fill" id="vine-fill"></div></div>
+            <div class="toolbar-inner">
+                <label class="search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5"/>
+                        <path d="M16 16l5 5"/>
+                    </svg>
+                    <input id="search" type="search" placeholder="Buscar competencia o RAP…" autocomplete="off">
+                </label>
+
+                <div class="filters" role="tablist" aria-label="Filtrar el jardín">
+                    <button class="filter-btn active" data-filter="all" type="button">
+                        El jardín <span id="count-all">0</span>
+                    </button>
+                    <button class="filter-btn" data-filter="pending" type="button">
+                        Por florecer <span id="count-pending">0</span>
+                    </button>
+                    <button class="filter-btn" data-filter="approved" type="button">
+                        En flor <span id="count-approved">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="legend" aria-label="Estados de crecimiento">
+            <span class="legend-item s-1"><i></i> Suelo esperando semilla</span>
+            <span class="legend-item s-2"><i></i> Semilla</span>
+            <span class="legend-item s-4"><i></i> Brote</span>
+            <span class="legend-item s-3"><i></i> Plántula</span>
+            <span class="legend-item s-5"><i></i> Flor</span>
+            <span class="legend-item s-6"><i></i> Planta marchita</span>
+        </div>
+        <div class="flora-key" id="flora-key" aria-label="Flores por asignatura"></div>
+
+        <main class="container">
+            <div id="raps-container" class="competencias-list"></div>
+        </main>
     </div>
 
-    <header class="glass-header">
-        <div class="header-content">
-            <div class="header-top">
-                <div>
-                    <h1>Juicios de Evaluación Botánicos 🌿</h1>
-                    <p>Ficha: 3336242 - ANÁLISIS Y DESARROLLO DE SOFTWARE</p>
-                </div>
-                <div class="global-progress-badge">
-                    <span id="global-progress-text">0% GLOBAL</span>
-                </div>
-            </div>
-
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">Por Competencia (<span id="count-all">0</span>)</button>
-                <button class="filter-btn" data-filter="pending">Por Aprobar (<span id="count-pending">0</span>)</button>
-                <button class="filter-btn" data-filter="approved">Aprobados (<span id="count-approved">0</span>)</button>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <div id="raps-container" class="competencias-list">
-            <!-- Competencias and RAPs will be dynamically inserted here -->
-        </div>
-    </main>
-
-    <!-- Load the data generated by the script -->
     <script src="datos.js"></script>
+    <script src="garden.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
