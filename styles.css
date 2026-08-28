@@ -449,12 +449,10 @@ body::before {
     font-style: normal;
 }
 
-.flora-mini-img {
+.flora-mini {
     width: 28px;
     height: 28px;
     display: block;
-    object-fit: contain;
-    border-radius: 4px;
 }
 
 /* ---------- List ---------- */
@@ -668,13 +666,11 @@ body::before {
     min-height: 110px;
 }
 
-.garden-art {
-    width: 148px;
-    height: 124px;
+.garden-svg {
+    width: 168px;
+    height: 142px;
     display: block;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
-    border-radius: 12px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,.28));
 }
 
 .rap-info {
